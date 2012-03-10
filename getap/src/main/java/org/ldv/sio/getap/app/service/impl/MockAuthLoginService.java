@@ -1,18 +1,18 @@
-package org.ldv.sio.getap.app.impl;
+package org.ldv.sio.getap.app.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.ldv.sio.getap.app.IFHauthLoginService;
 import org.ldv.sio.getap.app.User;
 import org.ldv.sio.getap.app.UserLoginCriteria;
+import org.ldv.sio.getap.app.service.IFHauthLoginService;
 import org.springframework.stereotype.Service;
 
 /**
  * Stub implementation of a AuthLoginService using a predefined set of Users
  */
-@Service("serviceAuthMemory")
-public class StubAuthLoginService implements IFHauthLoginService {
+@Service("serviceAuth")
+public class MockAuthLoginService implements IFHauthLoginService {
 
 	public User getAuthUser(UserLoginCriteria user) {
 		List<User> users = this.getStubUsers();

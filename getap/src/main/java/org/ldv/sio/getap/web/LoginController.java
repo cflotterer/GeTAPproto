@@ -1,8 +1,8 @@
 package org.ldv.sio.getap.web;
 
-import org.ldv.sio.getap.app.IFHauthLoginService;
 import org.ldv.sio.getap.app.User;
 import org.ldv.sio.getap.app.UserLoginCriteria;
+import org.ldv.sio.getap.app.service.IFHauthLoginService;
 import org.ldv.sio.getap.utils.UtilSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 
 	@Autowired
-	@Qualifier("serviceAuthMemory")
+	@Qualifier("serviceAuth")
 	private IFHauthLoginService hauthLoginService;
 
 	public void setHauthLoginService(IFHauthLoginService hauthLoginService) {

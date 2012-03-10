@@ -6,7 +6,6 @@ import org.ldv.sio.getap.app.User;
 import org.ldv.sio.getap.app.service.IFManagerGeTAP;
 import org.ldv.sio.getap.utils.UtilSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EleveController {
 
 	@Autowired
-	@Qualifier("mockServiceManager")
 	private IFManagerGeTAP manager;
 
 	public void setManagerEleve(IFManagerGeTAP serviceManager) {
@@ -74,32 +72,40 @@ public class EleveController {
 	}
 
 	@RequestMapping(value = "doedit", method = RequestMethod.POST)
-	public String doeditDCTAPById(FormDemandeConsoTempsAccPers dctap,
+	public String doeditDCTAPById(FormDemandeConsoTempsAccPers formDctap,
 	    BindingResult bindResult, Model model) {
-		System.out.println("TEST :" + dctap.getId());
-		System.out.println("TEST prof :" + dctap.getProfId() + ":"
-		    + dctap.getProfNom());
+		System.out.println("TEST :" + formDctap.getId());
+		System.out.println("TEST prof :" + formDctap.getProfId() + ":"
+		    + formDctap.getProfNom());
 		System.out.println("TEST :" + bindResult);
 		System.out.println("TEST :" + model);
 
-		DemandeConsoTempsAccPers databaseDctap = manager.getDCTAPById(Long
-		    .valueOf(dctap.getId()));
+		// java.sql.Date.valueOf(formDctap.getDateAction());
+		User prof = manager.getProfesseurById(formDctap.getProfId());
+		if (prof == null)
+			bindResult.rejectValue("profId", "required",
+			    "Erreur d'identifiant de professeur");
+		else {
+			String nomProf = formDctap.getProfNom();
+			if (!nomProf.equalsIgnoreCase(prof.getNom()))
+				bindResult.rejectValue("profNom", "required",
+				    "Le nom du professeur ne correspond pas");
+		}
 
-		// valorise l'objet de la base à partir du bean de vue
-		databaseDctap.setDateAction(dctap.getDateAction());
-		databaseDctap.setProf(manager.getProfesseurById(dctap.getProfId()));
-		// databaseDctap.setAccPers(manager.getAPById(dctap.getAccPers().getId()));
-
-		// DemandeConsoTempsAccPers currentDctaap = manager.getDCTAPById(Long
-		// .valueOf(id));
-		// dctap.setDateAction(currentDctaap.getDateAction());
-		// User eleve = UtilSession.getUserInSession();
-		// manager.editDCTAPById(Long.valueOf(id), eleve)) {
-
-		// return "redirect:/app/eleve/mesdctap";
 		if (bindResult.hasErrors())
 			return "eleve/edit";
-		else
-			return "eleve/doedit";
+		else {
+
+			DemandeConsoTempsAccPers dctapForUpdate = manager.getDCTAPById(Long
+			    .valueOf(formDctap.getId()));
+
+			// valorise l'objet de la base à partir du bean de vue
+			dctapForUpdate.setDateAction(formDctap.getDateAction());
+
+			dctapForUpdate.setProf(manager.getProfesseurById(formDctap.getProfId()));
+			manager.updateDCTAP(dctapForUpdate);
+
+			return "redirect:/app/eleve/mesdctap";
+		}
 	}
 }
