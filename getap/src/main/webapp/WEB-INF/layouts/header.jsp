@@ -5,7 +5,7 @@
 	<% Object user = session.getAttribute("user");  %>
    <div class="right">	
 	 <c:if test="${not empty user}">
-	   ${user.prenom}
+	   ${user.prenom} ${user.nom} (${user.role})
 	   	<a href="<c:url value="/app/login/logout" />">
 		 deconnexion
 	    </a>

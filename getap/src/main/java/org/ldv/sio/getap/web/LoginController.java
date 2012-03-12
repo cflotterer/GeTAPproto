@@ -67,7 +67,7 @@ public class LoginController {
 				return "login/index";
 			}
 			UtilSession.setUserInSession(user);
-			model.addAttribute("user", user);
+			model.addAttribute("userAuth", user);
 			return "login/authenticate";
 		}
 	}

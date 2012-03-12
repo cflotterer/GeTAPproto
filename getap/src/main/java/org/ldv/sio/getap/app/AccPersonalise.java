@@ -3,7 +3,7 @@ package org.ldv.sio.getap.app;
 /**
  * type d'accompagnement personnalisé. Ex : "SOS Matière"
  * 
- * @author kpu
+ * 
  * 
  */
 public class AccPersonalise {

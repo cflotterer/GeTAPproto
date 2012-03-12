@@ -23,22 +23,33 @@ public class ActorAccessInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 	    HttpServletResponse response, Object handler) throws Exception {
 
-		String servletName = request.getRequestURI().split("/")[3];
+		String controllerName = request.getRequestURI().split("/")[3];
 
 		System.out.println("TEST  INTERCEPTOR 2:" + request.getContextPath()
-		    + " servlet: " + servletName);
+		    + " servlet: " + controllerName);
 
 		logger.info("TEST  INTERCEPTOR with LOGGER !:" + request.getContextPath()
-		    + " servlet: " + servletName);
+		    + " servlet: " + controllerName);
 
 		User userInSession = UtilSession.getUserInSession();
+		String role = (userInSession != null) ? userInSession.getRole() : "";
 
-		if (!servletName.equals("login") && null == userInSession) {
+		boolean ok = false;
+
+		if (controllerName.equals("hotels") && role.equals("admin"))
+			ok = true;
+		else if (controllerName.equals("eleve") && role.equals("eleve"))
+			ok = true;
+
+		else if (controllerName.equals("login"))
+			ok = true;
+
+		if (ok)
+			return true;
+		else {
 			response.sendRedirect(request.getContextPath() + "/app/login/index");
 			return false;
 		}
-		System.out.println("TEST  role :"
-		    + ((userInSession == null) ? "pas de rôle" : userInSession.getRole()));
-		return true;
+
 	}
 }
