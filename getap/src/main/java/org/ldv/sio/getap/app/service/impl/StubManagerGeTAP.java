@@ -132,11 +132,8 @@ public class StubManagerGeTAP implements IFManagerGeTAP {
 		// puis SELECT ... WHERE anneeScolaire=... AND id=user.getId()
 		// non traité ici
 		for (int i = 0; i < listeDCTAP.size(); i++) {
-			if (listeDCTAP.get(i).getIdEleve() == eleve.getId()) {
+			if (listeDCTAP.get(i).getIdEleve() == eleve.getId())
 				result.add(listeDCTAP.get(i));
-				System.out.println("Retenu : " + listeDCTAP.get(i));
-			} else
-				System.out.println("Rejeté : " + listeDCTAP.get(i));
 		}
 		return result;
 	}
