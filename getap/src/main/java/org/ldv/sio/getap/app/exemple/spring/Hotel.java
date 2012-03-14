@@ -1,4 +1,4 @@
-package org.ldv.sio.getap.app;
+package org.ldv.sio.getap.app.exemple.spring;
 
 import java.math.BigDecimal;
 
@@ -19,8 +19,8 @@ public class Hotel {
 	public Hotel() {
 	}
 
-	public Hotel(Long id, String name, String address, String city,
-			String state, String zip, String country, BigDecimal price) {
+	public Hotel(Long id, String name, String address, String city, String state,
+	    String zip, String country, BigDecimal price) {
 		this.id = id;
 		this.name = name;
 		this.address = address;

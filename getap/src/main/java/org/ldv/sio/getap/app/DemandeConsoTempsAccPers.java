@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class DemandeConsoTempsAccPers {
 	private Long id;
-	private Integer anneeScolaire;
+	private String anneeScolaire;
 	private java.sql.Date dateAction;
 	private Integer minutes;
 	private User prof;
@@ -16,7 +16,7 @@ public class DemandeConsoTempsAccPers {
 
 	}
 
-	public DemandeConsoTempsAccPers(Long id, Integer anneeScolaire, Date date,
+	public DemandeConsoTempsAccPers(Long id, String anneeScolaire, Date date,
 	    Integer minutes, User prof, AccPersonalise accPers, Integer idEleve,
 	    int etat) {
 		super();
@@ -38,11 +38,11 @@ public class DemandeConsoTempsAccPers {
 		this.id = id;
 	}
 
-	public Integer getAnneeScolaire() {
+	public String getAnneeScolaire() {
 		return anneeScolaire;
 	}
 
-	public void setAnneeScolaire(Integer anneeScolaire) {
+	public void setAnneeScolaire(String anneeScolaire) {
 		this.anneeScolaire = anneeScolaire;
 	}
 

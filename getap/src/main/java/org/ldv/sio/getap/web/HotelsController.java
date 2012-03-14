@@ -1,8 +1,8 @@
 package org.ldv.sio.getap.web;
 
-import org.ldv.sio.getap.app.Hotel;
-import org.ldv.sio.getap.app.HotelSearchCriteria;
-import org.ldv.sio.getap.app.HotelSearchService;
+import org.ldv.sio.getap.app.exemple.spring.Hotel;
+import org.ldv.sio.getap.app.exemple.spring.HotelSearchCriteria;
+import org.ldv.sio.getap.app.exemple.spring.HotelSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -32,7 +32,7 @@ public class HotelsController {
 	 * Default action, displays the search page.
 	 * 
 	 * @param searchCriteria
-	 *            The criteria to search for
+	 *          The criteria to search for
 	 */
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public void index(HotelSearchCriteria searchCriteria) {
@@ -44,20 +44,20 @@ public class HotelsController {
 	 * HotelSearchService
 	 * 
 	 * @param searchCriteria
-	 *            The criteria to search for
+	 *          The criteria to search for
 	 * @param bindResult
-	 *            Holds searchCriteria validation errors
+	 *          Holds searchCriteria validation errors
 	 * @param model
-	 *            Holds the resulting list of hotels
+	 *          Holds the resulting list of hotels
 	 * @return Success or error view
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.GET)
 	public String search(HotelSearchCriteria searchCriteria,
-			BindingResult bindResult, Model model) {
+	    BindingResult bindResult, Model model) {
 		if (searchCriteria.getQuery() == null
-				|| "".equals(searchCriteria.getQuery())) {
+		    || "".equals(searchCriteria.getQuery())) {
 			bindResult.rejectValue("query", "required",
-					"Please enter valid search criteria");
+			    "Please enter valid search criteria");
 		}
 		if (bindResult.hasErrors()) {
 			return "hotels/index";
@@ -71,7 +71,7 @@ public class HotelsController {
 	 * Details for a single hotel
 	 * 
 	 * @param id
-	 *            The id of the Hotel to find
+	 *          The id of the Hotel to find
 	 * @return The Hotel
 	 */
 	@RequestMapping(value = "details", method = RequestMethod.GET)

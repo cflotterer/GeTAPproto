@@ -3,11 +3,10 @@ package org.ldv.sio.getap.web;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.ldv.sio.getap.app.Hotel;
-import org.ldv.sio.getap.app.HotelSearchCriteria;
-import org.ldv.sio.getap.app.HotelSearchService;
-import org.ldv.sio.getap.app.impl.Stub2HotelSearchService;
-import org.ldv.sio.getap.web.HotelsController;
+import org.ldv.sio.getap.app.exemple.spring.Hotel;
+import org.ldv.sio.getap.app.exemple.spring.HotelSearchCriteria;
+import org.ldv.sio.getap.app.exemple.spring.HotelSearchService;
+import org.ldv.sio.getap.app.exemple.spring.impl.Stub2HotelSearchService;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -34,8 +33,7 @@ public class HotelsControllerTests {
 	}
 
 	/**
-	 * Test for /hotels/index action. There is no logic in the controller to
-	 * test.
+	 * Test for /hotels/index action. There is no logic in the controller to test.
 	 */
 	@Test
 	public void testIndex() {
@@ -48,17 +46,16 @@ public class HotelsControllerTests {
 	public void testSearch() {
 		HotelSearchCriteria searchCriteria = new HotelSearchCriteria("Westin");
 		Model model = new ExtendedModelMap();
-		BindingResult bindResult = new BeanPropertyBindingResult(
-				searchCriteria, "HotelSearchCriteriaBis");
-		String selectedView = controller.search(searchCriteria, bindResult,
-				model);
+		BindingResult bindResult = new BeanPropertyBindingResult(searchCriteria,
+		    "HotelSearchCriteriaBis");
+		String selectedView = controller.search(searchCriteria, bindResult, model);
 
 		Assert.assertTrue("The search results page should be returned",
-				"hotels/search".equals(selectedView));
-		Assert.assertFalse("The bind should have no errors",
-				bindResult.hasErrors());
+		    "hotels/search".equals(selectedView));
+		Assert
+		    .assertFalse("The bind should have no errors", bindResult.hasErrors());
 		Assert.assertTrue("The hotels list should be in the model",
-				model.containsAttribute("hotels"));
+		    model.containsAttribute("hotels"));
 	}
 
 	/**
@@ -68,38 +65,33 @@ public class HotelsControllerTests {
 	public void testNullSearch() {
 		HotelSearchCriteria searchCriteria = new HotelSearchCriteria(null);
 		Model model = new ExtendedModelMap();
-		BindingResult bindResult = new BeanPropertyBindingResult(
-				searchCriteria, "HotelSearchCriteriaBis");
-		String selectedView = controller.search(searchCriteria, bindResult,
-				model);
+		BindingResult bindResult = new BeanPropertyBindingResult(searchCriteria,
+		    "HotelSearchCriteriaBis");
+		String selectedView = controller.search(searchCriteria, bindResult, model);
 
 		Assert.assertTrue("The search errors page should be returned",
-				"hotels/index".equals(selectedView));
-		Assert.assertTrue("The bind should contain errors",
-				bindResult.hasErrors());
+		    "hotels/index".equals(selectedView));
+		Assert.assertTrue("The bind should contain errors", bindResult.hasErrors());
 		Assert.assertFalse("The model should not contain the hotels list",
-				model.containsAttribute("hotels"));
+		    model.containsAttribute("hotels"));
 	}
 
 	/**
-	 * Test for /hotels/search action. An empty search results in a search
-	 * error.
+	 * Test for /hotels/search action. An empty search results in a search error.
 	 */
 	@Test
 	public void testEmptySearch() {
 		HotelSearchCriteria searchCriteria = new HotelSearchCriteria("");
 		Model model = new ExtendedModelMap();
-		BindingResult bindResult = new BeanPropertyBindingResult(
-				searchCriteria, "HotelSearchCriteriaBis");
-		String selectedView = controller.search(searchCriteria, bindResult,
-				model);
+		BindingResult bindResult = new BeanPropertyBindingResult(searchCriteria,
+		    "HotelSearchCriteriaBis");
+		String selectedView = controller.search(searchCriteria, bindResult, model);
 
 		Assert.assertTrue("The search errors page should be returned",
-				"hotels/index".equals(selectedView));
-		Assert.assertTrue("The bind should contain errors",
-				bindResult.hasErrors());
+		    "hotels/index".equals(selectedView));
+		Assert.assertTrue("The bind should contain errors", bindResult.hasErrors());
 		Assert.assertFalse("The model should not contain the hotels list",
-				model.containsAttribute("hotels"));
+		    model.containsAttribute("hotels"));
 	}
 
 	/**
@@ -109,7 +101,7 @@ public class HotelsControllerTests {
 	public void testDetails() {
 		Long id = 1L;
 		Hotel hotel = controller.details(id);
-		Assert.assertTrue("The expected hotel was not found", hotel.getId()
-				.equals(id));
+		Assert.assertTrue("The expected hotel was not found",
+		    hotel.getId().equals(id));
 	}
 }

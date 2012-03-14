@@ -31,19 +31,21 @@ public class MockManagerGeTAP implements IFManagerGeTAP {
 		listeProfs.add(new User(10L, "Yukihiro", "Matsumoto", "ruby",
 		    "prof-intervenant"));
 
+		String anneScolaire = "2011-2012";
+
 		listeDCTAP = new ArrayList<DemandeConsoTempsAccPers>();
-		listeDCTAP.add(new DemandeConsoTempsAccPers(100L, 2011, java.sql.Date
-		    .valueOf("2011-01-21"), 60, getProfesseurById(2L), getAPById(1), 2, 0));
-		listeDCTAP.add(new DemandeConsoTempsAccPers(101L, 2011, java.sql.Date
-		    .valueOf("2011-01-22"), 60, getProfesseurById(2L), getAPById(2), 2, 0));
-		listeDCTAP
-		    .add(new DemandeConsoTempsAccPers(102L, 2011, java.sql.Date
-		        .valueOf("2011-01-23"), 120, getProfesseurById(5L), getAPById(2),
-		        2, 0));
-		listeDCTAP
-		    .add(new DemandeConsoTempsAccPers(102L, 2011, java.sql.Date
-		        .valueOf("2011-01-24"), 120, getProfesseurById(10L), getAPById(0),
-		        2, 0));
+		listeDCTAP.add(new DemandeConsoTempsAccPers(100L, "2011-2012",
+		    java.sql.Date.valueOf("2011-01-21"), 60, getProfesseurById(2L),
+		    getAPById(1), 2, 0));
+		listeDCTAP.add(new DemandeConsoTempsAccPers(101L, anneScolaire,
+		    java.sql.Date.valueOf("2011-01-22"), 60, getProfesseurById(2L),
+		    getAPById(2), 2, 0));
+		listeDCTAP.add(new DemandeConsoTempsAccPers(102L, anneScolaire,
+		    java.sql.Date.valueOf("2011-01-23"), 120, getProfesseurById(5L),
+		    getAPById(2), 2, 0));
+		listeDCTAP.add(new DemandeConsoTempsAccPers(102L, anneScolaire,
+		    java.sql.Date.valueOf("2011-01-24"), 120, getProfesseurById(10L),
+		    getAPById(0), 2, 0));
 	}
 
 	public AccPersonalise getAPById(int id) {

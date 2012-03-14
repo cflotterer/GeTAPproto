@@ -1,4 +1,4 @@
-package org.ldv.sio.getap.app;
+package org.ldv.sio.getap.app.exemple.spring;
 
 /**
  * Form backing bean to hold search details
