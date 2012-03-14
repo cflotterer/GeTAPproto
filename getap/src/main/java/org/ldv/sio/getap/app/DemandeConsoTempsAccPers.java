@@ -9,7 +9,7 @@ public class DemandeConsoTempsAccPers {
 	private Integer minutes;
 	private User prof;
 	private AccPersonalise accPers;
-	private Integer idEleve;
+	private Long idEleve;
 	private int etat;
 
 	public DemandeConsoTempsAccPers() {
@@ -17,8 +17,7 @@ public class DemandeConsoTempsAccPers {
 	}
 
 	public DemandeConsoTempsAccPers(Long id, String anneeScolaire, Date date,
-	    Integer minutes, User prof, AccPersonalise accPers, Integer idEleve,
-	    int etat) {
+	    Integer minutes, User prof, AccPersonalise accPers, Long idEleve, int etat) {
 		super();
 		this.id = id;
 		this.anneeScolaire = anneeScolaire;
@@ -78,11 +77,11 @@ public class DemandeConsoTempsAccPers {
 		this.accPers = accPers;
 	}
 
-	public Integer getIdEleve() {
+	public Long getIdEleve() {
 		return idEleve;
 	}
 
-	public void setIdEleve(Integer idEleve) {
+	public void setIdEleve(Long idEleve) {
 		this.idEleve = idEleve;
 	}
 
@@ -131,6 +130,14 @@ public class DemandeConsoTempsAccPers {
 		} else if (!idEleve.equals(other.idEleve))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "DemandeConsoTempsAccPers [id=" + id + ", anneeScolaire="
+		    + anneeScolaire + ", dateAction=" + dateAction + ", minutes=" + minutes
+		    + ", prof=" + prof + ", accPers=" + accPers + ", idEleve=" + idEleve
+		    + ", etat=" + etat + "]";
 	}
 
 }

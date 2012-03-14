@@ -8,13 +8,13 @@ public class User {
 	private Long id;
 	private String nom;
 	private String prenom;
-	private String classe;
+	private Classe classe;
 	private String role;
 
 	public User() {
 	}
 
-	public User(Long id, String firstName, String lastName, String classe,
+	public User(Long id, String firstName, String lastName, Classe classe,
 	    String role) {
 		this.id = id;
 		this.prenom = firstName;
@@ -52,11 +52,11 @@ public class User {
 		this.prenom = prenom;
 	}
 
-	public String getClasse() {
+	public Classe getClasse() {
 		return classe;
 	}
 
-	public void setClasse(String classe) {
+	public void setClasse(Classe classe) {
 		this.classe = classe;
 	}
 
@@ -67,4 +67,42 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
+			return false;
+		return true;
+	}
+
 }

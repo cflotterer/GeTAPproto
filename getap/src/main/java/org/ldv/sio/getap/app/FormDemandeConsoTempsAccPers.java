@@ -13,7 +13,7 @@ public class FormDemandeConsoTempsAccPers {
 	private long profId;
 	private String profNom;
 	private int accPersId;
-	private int idEleve;
+	private long idEleve;
 	private int etat;
 
 	public FormDemandeConsoTempsAccPers() {
@@ -68,11 +68,11 @@ public class FormDemandeConsoTempsAccPers {
 		this.accPersId = accPersId;
 	}
 
-	public int getIdEleve() {
+	public long getIdEleve() {
 		return idEleve;
 	}
 
-	public void setIdEleve(int idEleve) {
+	public void setIdEleve(long idEleve) {
 		this.idEleve = idEleve;
 	}
 

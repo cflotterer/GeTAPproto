@@ -41,7 +41,7 @@ public class EleveController {
 	@RequestMapping(value = "mesdctap", method = RequestMethod.GET)
 	public String mesdctap(Model model) {
 		User me = UtilSession.getUserInSession();
-		model.addAttribute("mesdctaps", manager.getAllDCTAP(me));
+		model.addAttribute("mesdctaps", manager.getAllDCTAPByEleve(me));
 		return "eleve/mesdctap";
 	}
 
@@ -59,6 +59,8 @@ public class EleveController {
 	public String editDCTAPById(@RequestParam("id") String id,
 	    FormDemandeConsoTempsAccPers dctap, Model model) {
 
+		System.out.println("TEST id recu :" + dctap.getId());
+
 		DemandeConsoTempsAccPers currentDctap = manager.getDCTAPById(Long
 		    .valueOf(id));
 
@@ -67,6 +69,7 @@ public class EleveController {
 		dctap.setDateAction(currentDctap.getDateAction());
 		dctap.setProfId(currentDctap.getProf().getId());
 		dctap.setProfNom(currentDctap.getProf().getNom());
+		dctap.setIdEleve(currentDctap.getIdEleve());
 
 		return "eleve/edit";
 	}
@@ -75,13 +78,11 @@ public class EleveController {
 	public String doeditDCTAPById(FormDemandeConsoTempsAccPers formDctap,
 	    BindingResult bindResult, Model model) {
 		System.out.println("TEST :" + formDctap.getId());
-		System.out.println("TEST prof :" + formDctap.getProfId() + ":"
-		    + formDctap.getProfNom());
-		System.out.println("TEST :" + bindResult);
+		System.out.println("TEST id eleve :" + formDctap.getIdEleve());
 		System.out.println("TEST :" + model);
 
 		// java.sql.Date.valueOf(formDctap.getDateAction());
-		User prof = manager.getProfesseurById(formDctap.getProfId());
+		User prof = manager.getUserById(formDctap.getProfId());
 		if (prof == null)
 			bindResult.rejectValue("profId", "required",
 			    "Erreur d'identifiant de professeur");
@@ -102,7 +103,7 @@ public class EleveController {
 			// valorise l'objet de la base à partir du bean de vue
 			dctapForUpdate.setDateAction(formDctap.getDateAction());
 
-			dctapForUpdate.setProf(manager.getProfesseurById(formDctap.getProfId()));
+			dctapForUpdate.setProf(manager.getUserById(formDctap.getProfId()));
 			manager.updateDCTAP(dctapForUpdate);
 
 			return "redirect:/app/eleve/mesdctap";
