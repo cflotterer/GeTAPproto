@@ -35,8 +35,6 @@ public class StubManagerGeTAP implements IFManagerGeTAP {
 		listeProfs.add(new User(2L, "Jean David", "Ichbiah", noclasse,
 		    "prof-intervenant"));
 
-		// listeProfs.add(new User(1L, "Dennis", "Ritchie", noclasse, "admin"));
-
 		listeProfs.add(new User(3L, "Guido ", "van Rossum", noclasse,
 		    "prof-intervenant"));
 		listeProfs
@@ -247,15 +245,17 @@ public class StubManagerGeTAP implements IFManagerGeTAP {
 	public User getUserById(Long id) {
 		User user = null;
 		for (User prof : listeProfs) {
-			if (prof.getId() == id)
+			if (prof.getId() == id) {
 				user = prof;
-			break;
+				break;
+			}
 		}
 		if (user == null)
 			for (User e : listeEleves) {
-				if (e.getId() == id)
+				if (e.getId() == id) {
 					user = e;
-				break;
+					break;
+				}
 			}
 		return user;
 	}
