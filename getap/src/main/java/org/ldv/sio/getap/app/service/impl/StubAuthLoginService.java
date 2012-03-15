@@ -37,7 +37,7 @@ public class StubAuthLoginService implements IFHauthLoginService {
 		users = new ArrayList<User>();
 		users.addAll(stubManagerGeTAP.getListeProfs());
 		users.addAll(stubManagerGeTAP.getListeEleves());
-
+		users.add(new User(1L, "Dennis", "Ritchie", null, "admin"));
 		return users;
 	}
 

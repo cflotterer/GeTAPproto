@@ -35,7 +35,7 @@ public class StubManagerGeTAP implements IFManagerGeTAP {
 		listeProfs.add(new User(2L, "Jean David", "Ichbiah", noclasse,
 		    "prof-intervenant"));
 
-		listeProfs.add(new User(1L, "Dennis", "Ritchie", noclasse, "admin"));
+		// listeProfs.add(new User(1L, "Dennis", "Ritchie", noclasse, "admin"));
 
 		listeProfs.add(new User(3L, "Guido ", "van Rossum", noclasse,
 		    "prof-intervenant"));
