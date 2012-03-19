@@ -12,7 +12,7 @@
 	</appender>
 
 	<!-- Application logger -->
-	<logger name="springldv">
+	<logger name="getap">
 		<level value="debug" />
 	</logger>
 
@@ -34,7 +34,7 @@
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="debug" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="org.springframework.webflow">

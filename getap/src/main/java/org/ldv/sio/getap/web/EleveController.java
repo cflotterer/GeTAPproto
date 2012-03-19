@@ -57,19 +57,21 @@ public class EleveController {
 
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
 	public String editDCTAPById(@RequestParam("id") String id,
-	    FormDemandeConsoTempsAccPers dctap, Model model) {
+	    FormDemandeConsoTempsAccPers formDctap, Model model) {
 
-		System.out.println("TEST id recu :" + dctap.getId());
+		System.out.println("TEST id recu :" + formDctap.getId());
 
 		DemandeConsoTempsAccPers currentDctap = manager.getDCTAPById(Long
 		    .valueOf(id));
 
 		// valorise le bean de vue avec le dctap courant
-		dctap.setId(currentDctap.getId()); // en provenance d'un champ caché
-		dctap.setDateAction(currentDctap.getDateAction());
-		dctap.setProfId(currentDctap.getProf().getId());
-		dctap.setProfNom(currentDctap.getProf().getNom());
-		dctap.setIdEleve(currentDctap.getIdEleve());
+		formDctap.setId(currentDctap.getId()); // en provenance d'un champ caché
+		formDctap.setDateAction(currentDctap.getDateAction());
+		formDctap.setProfId(currentDctap.getProf().getId());
+		formDctap.setProfNom(currentDctap.getProf().getNom());
+		formDctap.setIdEleve(currentDctap.getIdEleve());
+
+		model.addAttribute("lesProfs", manager.getAllProf());
 
 		return "eleve/edit";
 	}
@@ -86,12 +88,12 @@ public class EleveController {
 		if (prof == null)
 			bindResult.rejectValue("profId", "required",
 			    "Erreur d'identifiant de professeur");
-		else {
-			String nomProf = formDctap.getProfNom();
-			if (!nomProf.equalsIgnoreCase(prof.getNom()))
-				bindResult.rejectValue("profNom", "required",
-				    "Le nom du professeur ne correspond pas");
-		}
+		// else {
+		// String nomProf = formDctap.getProfNom();
+		// if (!nomProf.equalsIgnoreCase(prof.getNom()))
+		// bindResult.rejectValue("profNom", "required",
+		// "Le nom du professeur ne correspond pas");
+		// }
 
 		if (bindResult.hasErrors())
 			return "eleve/edit";
