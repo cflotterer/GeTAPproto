@@ -69,7 +69,7 @@ public class EleveController {
 		formDctap.setDateAction(currentDctap.getDateAction());
 		formDctap.setProfId(currentDctap.getProf().getId());
 		// formDctap.setProfNom(currentDctap.getProf().getNom());
-		formDctap.setIdEleve(currentDctap.getIdEleve());
+		formDctap.setIdEleve(currentDctap.getEleve().getId());
 
 		model.addAttribute("lesProfs", manager.getAllProf());
 
