@@ -68,7 +68,7 @@ public class EleveController {
 		formDctap.setId(currentDctap.getId()); // en provenance d'un champ caché
 		formDctap.setDateAction(currentDctap.getDateAction());
 		formDctap.setProfId(currentDctap.getProf().getId());
-		formDctap.setProfNom(currentDctap.getProf().getNom());
+		// formDctap.setProfNom(currentDctap.getProf().getNom());
 		formDctap.setIdEleve(currentDctap.getIdEleve());
 
 		model.addAttribute("lesProfs", manager.getAllProf());

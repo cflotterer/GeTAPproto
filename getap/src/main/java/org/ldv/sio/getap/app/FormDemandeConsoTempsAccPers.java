@@ -11,7 +11,8 @@ public class FormDemandeConsoTempsAccPers {
 	private java.sql.Date dateAction;
 	private int minutes;
 	private long profId;
-	private String profNom;
+	private String profNom; // non utile... (depuis l'introduction de la balise
+													// select dans la vue)
 	private int accPersId;
 	private long idEleve;
 	private int etat;
