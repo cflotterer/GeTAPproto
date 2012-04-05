@@ -331,4 +331,17 @@ public class StubManagerGeTAP implements IFManagerGeTAP {
 		return as;
 	}
 
+	public User getUserByLogin(String login) {
+		List<User> users = this.getAllEleve();
+		for (User userIndb : users)
+			if (userIndb.getNom().equals(login))
+				return userIndb;
+		users = this.getAllProf();
+		for (User userProfIndb : users)
+			if (userProfIndb.getNom().equals(login))
+				return userProfIndb;
+
+		return null;
+	}
+
 }

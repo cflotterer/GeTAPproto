@@ -261,4 +261,7 @@ public interface IFManagerGeTAP {
 	 * @return une liste d'années scolaires
 	 */
 	public List<String> getAllAnneeScolaire();
+
+	// a documenter
+	public User getUserByLogin(String login);
 }

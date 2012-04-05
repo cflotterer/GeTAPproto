@@ -12,6 +12,7 @@ import org.ldv.sio.getap.app.DemandeConsoTempsAccPers;
 import org.ldv.sio.getap.app.User;
 import org.ldv.sio.getap.app.service.IFManagerGeTAP;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -172,6 +173,19 @@ public class DBManagerGeTAP implements IFManagerGeTAP {
 		return null;
 	}
 
+	public User getUserByLogin(String login) {
+		User user;
+		try {
+			user = this.jdbcTemplate.queryForObject(
+			    "select * from user where nom = ?", new Object[] { login },
+			    new UserMapper());
+
+		} catch (EmptyResultDataAccessException e) {
+			user = null;
+		}
+		return user;
+	}
+
 	// classe pour passage d'une ligne d'une table à un objet
 	private static final class UserMapper implements RowMapper<User> {
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -179,6 +193,10 @@ public class DBManagerGeTAP implements IFManagerGeTAP {
 			user.setPrenom(rs.getString("prenom"));
 			user.setNom(rs.getString("nom"));
 			user.setRole(rs.getString("role"));
+			Classe classe = new Classe();
+			// classe.setId(Integer.parseInt(rs.getString("idClasse")));
+			// classe.setNom("bidon");
+			user.setClasse(classe);
 			return user;
 		}
 	}
