@@ -173,7 +173,7 @@ public class DBManagerGeTAP implements IFManagerGeTAP {
 		return null;
 	}
 
-	public User getUserByLogin(String login) {
+	public User getUserByLogin(String login, String pw) {
 		User user;
 		try {
 			user = this.jdbcTemplate.queryForObject(
@@ -193,7 +193,9 @@ public class DBManagerGeTAP implements IFManagerGeTAP {
 			user.setPrenom(rs.getString("prenom"));
 			user.setNom(rs.getString("nom"));
 			user.setRole(rs.getString("role"));
+			// TODO relation avec Classe
 			Classe classe = new Classe();
+			// if rs.getString("idClasse")
 			// classe.setId(Integer.parseInt(rs.getString("idClasse")));
 			// classe.setNom("bidon");
 			user.setClasse(classe);

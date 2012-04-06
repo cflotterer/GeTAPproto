@@ -32,7 +32,7 @@ public class StubAuthLoginService implements IFHauthLoginService {
 	}
 
 	public User getAuthUser(UserLoginCriteria user) {
-		User userdb = managerGeTAP.getUserByLogin(user.getLogin());
+		User userdb = managerGeTAP.getUserByLogin(user.getLogin(), null);
 		return userdb;
 		//
 		// List<User> users = this.getStubUsers();
