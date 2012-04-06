@@ -177,8 +177,8 @@ public class DBManagerGeTAP implements IFManagerGeTAP {
 		User user;
 		try {
 			user = this.jdbcTemplate.queryForObject(
-			    "select * from user where nom = ?", new Object[] { login },
-			    new UserMapper());
+			    "select * from user where login = ? and mdp = ?", new Object[] {
+			        login, pw }, new UserMapper());
 
 		} catch (EmptyResultDataAccessException e) {
 			user = null;
