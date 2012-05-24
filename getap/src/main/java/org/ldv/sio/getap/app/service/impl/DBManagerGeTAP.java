@@ -193,7 +193,7 @@ public class DBManagerGeTAP implements IFManagerGeTAP {
 			user.setPrenom(rs.getString("prenom"));
 			user.setNom(rs.getString("nom"));
 			user.setRole(rs.getString("role"));
-			// TODO relation avec Classe
+			// TODO relation avec Classe : plus de champs attendus dans resultset
 			Classe classe = new Classe();
 			// if rs.getString("idClasse")
 			// classe.setId(Integer.parseInt(rs.getString("idClasse")));
